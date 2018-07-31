@@ -12,7 +12,7 @@ import in.co.chicmic.inventoryapp.utilities.AppConstants;
 public class InventoryDbHelper extends SQLiteOpenHelper {
 
     public InventoryDbHelper(Context context) {
-        super(context, AppConstants.DB_NAME, null, AppConstants.DB_VERSION);
+        super(context, AppConstants.sDB_NAME, null, AppConstants.sDB_VERSION);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class InventoryDbHelper extends SQLiteOpenHelper {
                 StockContract.StockEntry.COLUMN_SUPPLIER_EMAIL,
                 StockContract.StockEntry.COLUMN_IMAGE
         };
-        String selection = StockContract.StockEntry._ID + AppConstants.SYMBOL_FOR_QUERY;
+        String selection = StockContract.StockEntry._ID + AppConstants.sSYMBOL_FOR_QUERY;
         String[] selectionArgs = new String[] { String.valueOf(itemId) };
 
         return db.query(
@@ -91,7 +91,7 @@ public class InventoryDbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(StockContract.StockEntry.COLUMN_QUANTITY, quantity);
-        String selection = StockContract.StockEntry._ID + AppConstants.SYMBOL_FOR_QUERY;
+        String selection = StockContract.StockEntry._ID + AppConstants.sSYMBOL_FOR_QUERY;
         String[] selectionArgs = new String[] { String.valueOf(currentItemId) };
         db.update(StockContract.StockEntry.TABLE_NAME,
                 values, selection, selectionArgs);
@@ -105,7 +105,7 @@ public class InventoryDbHelper extends SQLiteOpenHelper {
         }
         ContentValues values = new ContentValues();
         values.put(StockContract.StockEntry.COLUMN_QUANTITY, newQuantity);
-        String selection = StockContract.StockEntry._ID + AppConstants.SYMBOL_FOR_QUERY;
+        String selection = StockContract.StockEntry._ID + AppConstants.sSYMBOL_FOR_QUERY;
         String[] selectionArgs = new String[] { String.valueOf(itemId) };
         db.update(StockContract.StockEntry.TABLE_NAME,
                 values, selection, selectionArgs);

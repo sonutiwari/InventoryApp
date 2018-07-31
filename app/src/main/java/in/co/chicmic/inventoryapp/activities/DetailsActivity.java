@@ -348,7 +348,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                 != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                        AppConstants.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+                        AppConstants.sMY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
             return;
         }
         openImageSelector();
@@ -364,14 +364,14 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         }
         intent.setType("image/*");
         startActivityForResult(Intent.createChooser(intent
-                , getString(R.string.select_picture)), AppConstants.PICK_IMAGE_REQUEST);
+                , getString(R.string.select_picture)), AppConstants.sPICK_IMAGE_REQUEST);
     }
 
     @Override
     public void onRequestPermissionsResult(int pRequestCode
             , @NonNull String pPermissions[], @NonNull int[] pGrantResults) {
         switch (pRequestCode) {
-            case AppConstants.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE: {
+            case AppConstants.sMY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE: {
                 // If request is cancelled, the result arrays are empty.
                 if (pGrantResults.length > 0
                         && pGrantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -388,7 +388,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         // If the request code seen here doesn't match, it's the response to some other intent,
         // and the below code shouldn't run at all.
 
-        if (pRequestCode == AppConstants.PICK_IMAGE_REQUEST && pResultCode == Activity.RESULT_OK) {
+        if (pRequestCode == AppConstants.sPICK_IMAGE_REQUEST && pResultCode == Activity.RESULT_OK) {
             // The document selected by the user won't be returned in the intent.
             // Instead, a URI to that document will be contained in the return intent
             // provided to this method as a parameter.  Pull that uri using "pResultData.getData()"
